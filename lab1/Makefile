@@ -315,7 +315,7 @@ endif
 # Target rules
 all: build
 
-build: helloworld
+build: matrixMul_new
 
 check.deps:
 ifeq ($(SAMPLE_ENABLED),0)
@@ -324,21 +324,21 @@ else
 	@echo "Sample is ready - all dependencies have been met"
 endif
 
-helloworld.o:helloworld.cu
+matrixMul_new.o:matrixMul_new.cu
 	$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
-helloworld: helloworld.o
+matrixMul_new: matrixMul_new.o
 	$(EXEC) $(NVCC) $(ALL_LDFLAGS) $(GENCODE_FLAGS) -o $@ $+ $(LIBRARIES)
 	$(EXEC) mkdir -p ../bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)
 	$(EXEC) cp $@ ../bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)
 
 run: build
-	$(EXEC) ./helloworld
+	$(EXEC) ./matrixMul_new
 
 testrun: build
 
 clean:
-	rm -f helloworld helloworld.o
-	rm -rf ../bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)/helloworld
+	rm -f matrixMul_new matrixMul_new.o
+	rm -rf ../bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)/matrixMul_new
 
 clobber: clean
