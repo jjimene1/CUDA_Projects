@@ -128,7 +128,7 @@ int MatrixMultiply(int argc, char **argv,
   checkCudaErrors(cudaEventRecord(start, stream));
 
   // Execute the kernel
-  int nIter = 100;
+  int nIter = 300;
 
   for (int f = 0; f < nIter; f++) {
       MatrixMulKernel
